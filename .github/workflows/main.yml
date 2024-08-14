@@ -6,15 +6,18 @@ jobs:
     build : 
         runs-on: ubuntu-latest 
         steps:
+            - uses: actions/checkout@v3
             - name: Hello World 출력!!
               run: echo Hello World
             - name: 디렉토리 출력!!
               run: ls -al
             - name: 파이썬 버전 출력!!
               run: python -V
-            # python 파일 실행
-            - uses: actions/checkout@v3
-            - name: 파이썬 실행!!
-              run: python test.py
             - name: 파이썬 패키지 설치 확인
               run: pip list
+            - name: pip 업그레이드
+              run: python -m pip install --upgrade pip
+            - name: 필요한 패키지 추가 설치
+              run: pip install -r requirements.txt
+            - name: 파이썬 실행!!
+              run: python test.py
